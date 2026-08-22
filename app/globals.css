@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@import "./shadcn.css";
+:root {
+  /* Background */
+  --background: #08090d;
+  --background-secondary:#0d0f14;
+
+  /* #Card */
+  --card :#11141b;
+  --card-hover : #161a23;
+
+  /* Text  */
+  --foreground : #f5f7fa;
+  --foreground-secondary :  #a7adba;
+  --foreground-muted :  #6f7785;
+
+  /* Brand  */
+  --primary :  #8b5cf6;
+  --primary-hover : #7c3aed;
+  --primary-light : #a78bfa;
+  --primary-glow : rgba(139, 92, 246, 0.18);
+
+  /* Accent  */
+  --accent: #6366F1;
+
+  /* Border */
+  --border : #20242e;
+  --border-light :  #2a2f3a;
+
+  /* Status  */
+  --success : #22c55e;
+  --error : #ef4444;
+  /* Line Heights */
+  --leading-tight: 1.1;
+  --leading-snug: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  
+}
+
+@theme inline {
+  /*=======
+    Colors
+    =======*/
+  --color-background: var(--background);
+  --color-background-secondary : var(--background-secondary);
+
+  --color-card : var(--card);
+  --color-card-hover : var(--card-hover);
+
+  --color-foreground: var(--foreground); 
+  --color-foreground-secondary : var(--foreground-secondary);
+  --color-foreground-muted : var(--foreground-muted);
+  
+  --color-primary : var(--primary);
+  --color-primary-hover : var(--primary-hover);
+  --color-primary-light : var(--primary-light);
+  --color-primary-glow : var(--primary-glow);
+
+  --color-accent : var(--accent);
+
+  --color-border : var(--border);
+  --color-border-light : var(--border-light);
+  
+  --color-success : var(--success);
+  --color-error : var(--error);
+
+
+  /*========
+      Fonts  
+    ========    */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+
+  /*===========
+      Font Size
+    ============  */
+  --text-xs: 0.75rem;       /* 12px */
+  --text-sm: 0.875rem;      /* 14px */
+  --text-base: 1rem;        /* 16px */
+  --text-lg: 1.125rem;      /* 18px */
+  --text-xl: 1.25rem;       /* 20px */
+  --text-2xl: 1.5rem;       /* 24px */
+  --text-3xl: 1.875rem;     /* 30px */
+  --text-4xl: 2.25rem;      /* 36px */
+  --text-5xl: 3rem;         /* 48px */
+  --text-6xl: 3.75rem;      /* 60px */
+  --text-7xl: 4.5rem;       /* 72px */
+  
+
+  /*============
+    Line Heights
+    ============*/
+  --leading-tight: 1.1;
+  --leading-snug: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;  
+
+
+}
+
+
+
+html{
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+
+::selection{
+  background-color: var(--primary);
+  color: var(--foreground);
+}
+
+::-moz-selection{
+  background-color: var(--primary-hover);
+  color: var(--foreground);
+}
