@@ -5,7 +5,7 @@ import { integrations } from './ui/IntegrationItems'
 
 
 
-const HowNexoraWorks = () => {
+const IntegrationFeature = () => {
   const [category , setCategory] = useState("All")
 
   const filteredIntegration = category === "All" ? integrations : integrations.filter(
@@ -13,11 +13,11 @@ const HowNexoraWorks = () => {
 
 
   return (
-    <section id='integration' className='bg-background py-20 px-4 md:px-8  mt-10 space-y-6 '>
+    <section id='integration' className='bg-background py-20 px-4 md:px-8  mt-10 mb-20 space-y-6 '>
 
-        {/* content  */}
+        {/* Heading  */}
       <div className='w-full flex flex-col items-center  gap-5'>
-        <span className='text-xs self-center  text-mono text-primary border border-primary/20 bg-background-secondary px-4 py-1 rounded-3xl'>HOW NEXORA WORKS</span>
+        <span className='text-xs self-center  text-mono text-primary border border-primary/20 bg-background-secondary px-4 py-1 rounded-3xl'>Integrations</span>
         <h1 className='text-center  text-4xl md:text-5xl lg:text-6xl text-foreground font-black'>
             From idea to <span className='block pl-2 lg:pl-4 text-foreground-secondary'>automation.</span>
         </h1>
@@ -67,4 +67,4 @@ const HowNexoraWorks = () => {
   )
 }
 
-export default HowNexoraWorks
+export default IntegrationFeature

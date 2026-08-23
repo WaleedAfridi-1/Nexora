@@ -13,7 +13,7 @@ interface IntegrationCardProps {
 const IntegrationCard = ({name, description, category,bgColor, Icon}:IntegrationCardProps) => {
   return (
           <Card 
-          className='py-5 px-2 pr-5 md:px-3 space-y-3  bg-card border border-border-light hover:border-primary/70 transition-all duration-300 ease-in-out shadow'
+          className='py-5 px-2 pr-5 md:px-3 space-y-3  bg-card border border-border-light hover:border-primary/70 hover:scale-102 hover:shadow-lg shadow-primary-glow/70 transition-all duration-300 ease-in-out '
           >
             <CardHeader className='w-full pl-3  py-2 pb-6 border-b border-border flex flex-row items-center gap-4'>
                  <div

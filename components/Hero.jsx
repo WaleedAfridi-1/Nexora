@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { SiGooglegemini } from "react-icons/si";
 
@@ -7,7 +8,7 @@ const Hero = () => {
       <div className=" border absolute left-1/2 top-1/5   -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-primary-glow blur-3xl"></div>
       
       {/* Right Side Content  */}
-      <section className="w-full md:w-full lg:full   gap-4 lg:gap-6  lg:px-8 lg:py-10  flex flex-col items-center translate-y-44 lg:translate-y-16 md:translate-y-64">
+      <section className="w-full md:w-full lg:full   gap-4 md:gap-8 lg:gap-6  lg:px-8 lg:py-10  flex flex-col items-center translate-y-44 lg:translate-y-16 md:translate-y-64">
         {/* Heading and Badge  */}
         <div className="w-full lg:w-210  flex flex-col lg:px-2  space-y-1">
           {/* Badge  */}
@@ -35,14 +36,19 @@ const Hero = () => {
         </div>
 
         {/* buttons  */}
-        <div className=" py-10 flex justify-center gap-4 lg:px-16  lg:mr-8 mt-16 lg:mt-4  lg:gap-8">
-          <button className="px-4 lg:px-6 md:px-5 py-1 bg-primary border border-border hover:border-border-light rounded-3xl active:scale-95 cursor-pointer hover:bg-primary-hover shadow transition-all duration-300 text-foreground font-semibold">
-            Get Started
-          </button>
 
-          <button className="px-4 lg:px-6 md:px-5 py-3 bg-transparent hover:bg-card  border border-border  hover:border-border-light rounded-3xl active:scale-95 cursor-pointer  shadow transition-all duration-300 text-foreground font-semibold">
-            See How Its Works
+        <div className=" py-10 flex justify-center  gap-4 lg:px-16  lg:mr-8 mt-16 lg:mt-4  lg:gap-8">
+          <Link href={"#contact"} className=" py-0.5" >
+            <button className="w-full h-full px-4 lg:px-6 md:px-5 py-1 bg-primary border border-border hover:border-border-light rounded-3xl active:scale-95 cursor-pointer hover:bg-primary-hover shadow transition-all duration-300 text-foreground font-semibold">
+              Get Started
+            </button>
+          </Link>
+
+          <Link href={"#integration"}>
+            <button className="px-4 lg:px-6 md:px-5 py-3 bg-transparent hover:bg-card  border border-border  hover:border-border-light rounded-3xl active:scale-95 cursor-pointer  shadow transition-all duration-300 text-foreground font-semibold">
+             See How Its Works
           </button>
+          </Link>
         </div>
       </section>
 

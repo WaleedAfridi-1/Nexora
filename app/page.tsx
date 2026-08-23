@@ -2,8 +2,9 @@ import Hero from "../components/Hero";
 import TrustedBy from "../components/TrustedBy";
 import ProblemsSolutions from "../components/ProblemsSolutions";
 import  Features  from "../components/Features";
-import Test from "../components/Test";
-import HowNexoraWorks from "@/components/Integration";
+import Test from "@/components/Test";
+import IntegrationFeature from "@/components/Integration";
+import UseCases from "@/components/UseCases";
 
 
 export default function Home() {
@@ -18,7 +19,9 @@ export default function Home() {
 
       <Features/>
 
-      <HowNexoraWorks/>
+      <IntegrationFeature/>
+
+      <UseCases/>
 
       <Test/>.
     </main>

@@ -36,8 +36,8 @@ const Navbar = () => {
     };
 
   return (
-    <header className="fixed w-full z-999 bg-background/70 ">
-      <nav className={`${isOpen ? "border-none ": "border-b "} backdrop-blur-md border-border transition-all duration-500 ease-in-out mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-5`}>
+    <header className={`${isOpen &&  "bg-background" } fixed lg:top-2 left-1/2  -translate-x-1/2 w-full  max-w-6xl z-999 px-4  pt-4 lg:pt-6`}>
+      <nav className={`${isOpen ? "border-none bg-background": "backdrop-blur-md bg-primary-glow/40"}   border-border lg:backdrop-blur-2xl  rounded-4xl  transition-all duration-500 ease-in-out mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-3`}>
 
         {/* Logo */}
         <div className='flex items-center gap-1.5 h-full text-foreground'>
@@ -75,12 +75,12 @@ const Navbar = () => {
         </motion.div>
 
         {/* Desktop Navigation */}
-        <div className='bg-background/70 backdrop-blur-md  border border-border-light shadow-2xl space-x-16 hidden lg:block px-6 p-3 rounded-3xl'>
-            <Link className='text-sm text-foreground-secondary hover:text-foreground transition-colors duration-300' href={'#product'}>Product</Link>
-            <Link className='text-sm text-foreground-secondary hover:text-foreground transition-colors duration-300' href={'#feature'}>Feature</Link>
-            <Link className='text-sm text-foreground-secondary hover:text-foreground transition-colors duration-300' href={'#integration'}>Integration</Link>
-            <Link className='text-sm text-foreground-secondary hover:text-foreground transition-colors duration-300' href={'#resources'}>Resources</Link>
-            <Link className='text-sm text-foreground-secondary hover:text-foreground transition-colors duration-300' href={'#pricing'}>Pricing</Link>
+        <div className='  space-x-10 hidden lg:block px-6 p-3 rounded-3xl'>
+            <Link className='text-sm md:text-md font-medium  text-foreground-secondary hover:text-foreground transition-colors duration-300' href={'#product'}>Product</Link>
+            <Link className='text-sm md:text-md font-medium  text-foreground-secondary hover:text-foreground transition-colors duration-300' href={'#feature'}>Feature</Link>
+            <Link className='text-sm md:text-md font-medium  text-foreground-secondary hover:text-foreground transition-colors duration-300' href={'#integration'}>Integration</Link>
+            <Link className='text-sm md:text-md font-medium  text-foreground-secondary hover:text-foreground transition-colors duration-300' href={'#resources'}>Resources</Link>
+            <Link className='text-sm md:text-md font-medium  text-foreground-secondary hover:text-foreground transition-colors duration-300' href={'#pricing'}>Pricing</Link>
         </div>
 
         <div className='hidden lg:block'>
@@ -100,7 +100,7 @@ const Navbar = () => {
                initial="closed"
                animate="open"
                exit="closed"
-               className='absolute top-full left-0 w-full bg-background border-b border-border shadow-2xl flex flex-col gap-6 px-6 py-8 text-sm md:text-lg text-foreground-secondary lg:hidden -z-10'
+               className='absolute top-full left-0 w-full bg-background border-b border-border shadow-2xl flex flex-col gap-6 px-6  py-8 text-sm md:text-lg text-foreground-secondary lg:hidden -z-10'
              >
                  <motion.div variants={linkVariants}>
                    <Link href="#product" onClick={() => setIsOpen(false)} className="block hover:text-foreground">Product</Link>
