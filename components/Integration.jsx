@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import IntegrationCard from './ui/IntegrationCard'
 import { integrations } from './ui/IntegrationItems'
+import { motion } from 'framer-motion';
 
 
 

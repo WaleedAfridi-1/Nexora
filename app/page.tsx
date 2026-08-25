@@ -5,6 +5,8 @@ import  Features  from "../components/Features";
 import Test from "@/components/Test";
 import IntegrationFeature from "@/components/Integration";
 import UseCases from "@/components/UseCases";
+import Stats from "@/components/Stats";
+import Testimonials from "@/components/Testimonials";
 
 
 export default function Home() {
@@ -22,6 +24,10 @@ export default function Home() {
       <IntegrationFeature/>
 
       <UseCases/>
+
+      <Stats/>
+      
+      <Testimonials/>
 
       <Test/>.
     </main>

@@ -33,7 +33,7 @@ const CardsContent = [
 ];
 
 const UseCases = () => {
-  const [activeTab, setActiveTab] = useState("01");
+  const [activeTab, setActiveTab] = useState(null);
 
   const toggleTab = (id) => {
     setActiveTab((prev) => (prev === id ? null : id));
