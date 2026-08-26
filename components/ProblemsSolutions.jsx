@@ -9,7 +9,7 @@ const ProblemsSolutions = () => {
     <section className="space-y-5 w-full min-h-screen mb-16 px-0 md-p-8  lg:px-16 py-8 lg:py-20  bg-background">
       
       <div className="w-full flex justify-center">
-        <span className="text-primary border border-primary/20 px-4 p-1 text-sm font-mono rounded-3xl">
+        <span className="text-primary border border-primary/20 px-4 p-1 text-sm bg-card rounded-3xl">
           WHY NEXORA?
         </span>
       </div>

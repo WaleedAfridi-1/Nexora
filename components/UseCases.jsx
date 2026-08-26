@@ -43,7 +43,7 @@ const UseCases = () => {
     <section id="product" className="w-full min-h-screen py-16 md:py-24 px-4 md:px-8">
       {/* Heading Section */}
       <div className="w-full flex flex-col items-center gap-4 text-center">
-        <span className="w-fit text-xs text-primary font-mono px-4 py-1.5 rounded-full bg-card border border-primary/20 shadow-xs">
+        <span className="w-fit text-xs text-primary  px-4 py-1.5 rounded-full bg-card border border-primary/20 shadow-xs">
           USE CASES
         </span>
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight">

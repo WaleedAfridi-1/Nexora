@@ -52,8 +52,8 @@ const Features = () => {
       
       {/* Heading */}
       <div className="w-full flex flex-col gap-3 md:gap-4  px-6 md:px-10  mb-4 ">
-        <span className="w-fit text-xs text-primary  font-mono border border-primary/30 px-3 py-1 rounded-3xl  ">
-          ✦POWERFUL FEATURES
+        <span className="w-fit text-xs text-primary bg-card border border-primary/30 px-3 py-1 rounded-3xl  ">
+          POWERFUL FEATURES
         </span>
 
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black  text-foreground">

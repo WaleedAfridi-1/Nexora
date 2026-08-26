@@ -18,7 +18,8 @@ const IntegrationFeature = () => {
 
         {/* Heading  */}
       <div className='w-full flex flex-col items-center  gap-5'>
-        <span className='text-xs self-center  text-mono text-primary border border-primary/20 bg-background-secondary px-4 py-1 rounded-3xl'>Integrations</span>
+        <span className='text-sm self-center  text-mono text-primary border border-primary/20 bg-card px-4 py-1 rounded-3xl'>Integrations</span>
+
         <h1 className='text-center  text-4xl md:text-5xl lg:text-6xl text-foreground font-black'>
             From idea to <span className='block pl-2 lg:pl-4 text-foreground-secondary'>automation.</span>
         </h1>

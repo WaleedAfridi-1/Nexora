@@ -64,7 +64,7 @@ const Testimonials = () => {
     <section className=" w-full mt-10 py-8 px-4 md:px-2 lg:px-8">
       {/* header  */}
       <div className="w-full flex flex-col items-center gap-3">
-        <span className="text-xs text-primary bg-card font-light font-mono px-4 py-2 border border-primary/30 rounded-3xl">
+        <span className="text-xs text-primary bg-card font-light  px-4 py-2 border border-primary/30 rounded-3xl">
           CUSTOMER STORIES
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-foreground">
@@ -82,7 +82,7 @@ const Testimonials = () => {
       </div>
 
       {/* cards container  */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-3 mt-8  py-8 px-4 md:px-2">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-3 mt-8  py-8 px-4 md:px-2">
         {testimonialsData.map((card) => {
           return (
             <div key={card.id} 

@@ -12,10 +12,9 @@ const Hero = () => {
         {/* Heading and Badge  */}
         <div className="w-full lg:w-210  flex flex-col lg:px-2  space-y-1">
           {/* Badge  */}
-          <div className="flex items-center justify-center gap-1 px-2 py-1 font-mono text-primary  cursor-pointer font-light leading-tight  shadow  rounded-3xl  bg-background-secondary border border-border-light  self-center">
-            <SiGooglegemini className="animate-pulse" />
-            <span className="text-xs ">AI-POWERED AUTOMATION</span>
-          </div>
+  
+        <span className='text-xs self-center  text-mono text-primary border border-primary/20 bg-card px-4 py-1 rounded-3xl'>AI-POWERED AUTOMATION</span>
+
 
           {/* heading */}
           <div className=" flex w-full    flex-col">

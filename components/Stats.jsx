@@ -38,7 +38,7 @@ const Stats = () => {
     <section className='w-full pb-16  px-2'>
         {/* Header    */}
         <div className='w-full flex flex-col items-center gap-3 px-4'>
-            <span className='px-4 py-1 rounded-3xl border border-primary/30 bg-card text-primary text-xs font-mono '>THE NEXORA DIFFERENCE</span>
+            <span className='px-4 py-1 rounded-3xl border border-primary/30 bg-card text-primary text-xs  '>THE NEXORA DIFFERENCE</span>
             <h1 className='text-4xl md:text-5xl lg:text-6xl text-foreground font-bold'>Built for modern <span className='block text-center text-foreground-secondary'>work</span></h1>
             <p className='text-center px-4 md:w-1/2 lg:px-14 text-foreground-secondary text-lg font-medium'>Move from ideas to execution faster with a system designed to keep your work connected.</p>
         </div>
