@@ -2,7 +2,6 @@ import Hero from "../components/Hero";
 import TrustedBy from "../components/TrustedBy";
 import ProblemsSolutions from "../components/ProblemsSolutions";
 import  Features  from "../components/Features";
-import Test from "@/components/Test";
 import IntegrationFeature from "@/components/Integration";
 import UseCases from "@/components/UseCases";
 import Stats from "@/components/Stats";
@@ -37,7 +36,6 @@ export default function Home() {
       
       <CTA/>
 
-      <Test/>
     </main>
   );
 }

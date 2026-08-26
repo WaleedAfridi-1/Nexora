@@ -4,7 +4,7 @@ import React from 'react'
 
 const CTA = () => {
   return (
-    <section className='w-full bg-primary/5 border border-primary/10 px-6 py-20 mt-10'>
+    <section className='w-full bg-primary/5 border border-primary/10 px-6 py-20 mt-4'>
       {/* Header  */}
       <div className='w-full flex flex-col items-center gap-4 '>
         <span className='text-xs  text-primary px-3 py-1 bg-card rounded-3xl border border-primary/40'>READY WHEN YOU ARE</span>
