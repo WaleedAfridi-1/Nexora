@@ -5,6 +5,8 @@
         "Googlegemini",
         "Huggingface",
         "Nexora",
-        "Sendgrid"
+        "Northstar",
+        "Sendgrid",
+        "usecase"
     ]
 }

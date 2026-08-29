@@ -1,36 +1,49 @@
-import React from 'react'
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-
+"use client";
+import React from "react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 interface IntegrationCardProps {
-    
-    name : string;
-    description : string;
-    category : string;
-    bgColor : string,
-    Icon: React.ComponentType<{ className?: string }>;
-}
-const IntegrationCard = ({name, description, category,bgColor, Icon}:IntegrationCardProps) => {
-  return (
-          <Card 
-          className='py-5 px-2 pr-5 md:px-3 space-y-3  bg-card border border-border-light hover:border-primary/70 hover:scale-102 hover:shadow-lg shadow-primary-glow/70 transition-all duration-300 ease-in-out '
-          >
-            <CardHeader className='w-full pl-3  py-2 pb-6 border-b border-border flex flex-row items-center gap-4'>
-                 <div
-                 style={{color :bgColor}}
-                 className='w-14 h-14  rounded-full md:w-8 md:h-8 flex items-center justify-center shrink-0 text-foreground'>
-                    {
-                    Icon  &&  <Icon className='w-full h-full  object-center' />
-                    }
-                </div>
-              <h4 className='text-lg md:text-xl font-bold'>{name}</h4>
-            </CardHeader>
-            <CardContent className='pl-3  lg:pl-3 lg:pr-10 space-y-6'>
-              <p className='text-foreground-secondary text-sm md:text-lg font-normal'>{description}</p>
-              <span className='text-xs font-extralight md:font-light text-primary'>{category}</span>
-            </CardContent>
-          </Card>
-  )
+  name: string;
+  description: string;
+  category: string;
+  bgColor: string;
+  Icon: React.ComponentType<{ className?: string }>;
 }
 
-export default IntegrationCard
+const IntegrationCard = ({
+  name,
+  description,
+  category,
+  bgColor,
+  Icon,
+}: IntegrationCardProps) => {
+  return (
+    <Card className="integration-card group relative bg-card/90 backdrop-blur-sm border border-border/60 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 ease-in-out p-2 md:p-3 rounded-2xl flex flex-col justify-between">
+      <CardHeader className="w-full p-4 pb-4 border-b border-border/50 flex flex-row items-center gap-4">
+        {/* Brand Icon Wrapper */}
+        <div
+          style={{ backgroundColor: `${bgColor}15`, color: bgColor }}
+          className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
+        >
+          {Icon && <Icon className="w-6 h-6 object-center" />}
+        </div>
+        <div>
+          <h4 className="text-lg md:text-xl font-bold text-foreground tracking-tight">
+            {name}
+          </h4>
+          <span className="text-xs font-mono font-medium text-primary mt-0.5 block">
+            {category}
+          </span>
+        </div>
+      </CardHeader>
+
+      <CardContent className="p-4 pt-6 space-y-4">
+        <p className="text-foreground-secondary text-sm md:text-base font-medium leading-relaxed">
+          {description}
+        </p>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default IntegrationCard;

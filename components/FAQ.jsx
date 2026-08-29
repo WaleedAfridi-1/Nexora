@@ -1,9 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { LuPlus } from "react-icons/lu";
-import { FiMinus } from "react-icons/fi";
-import { RxCross1 } from "react-icons/rx";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const faqs = [
   {
@@ -44,85 +42,164 @@ const faqs = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 const FAQ = () => {
-  const [isOpen, setIsOpen] = useState(null);
+  const [openId, setOpenId] = useState(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const toggle = (id) => {
+    setOpenId((prev) => (prev === id ? null : id));
+  };
+
   return (
-    <section id="faqs"
-     className=" mt-20 py-6 w-full flex flex-col lg:flex-row gap-4">
-      {/* header  */}
-      <div className="w-full lg:w-2/5 py-4  flex flex-col items-center gap-3">
-        <span className="w-fit text-xs text-primary  px-3 py-1 bg-card rounded-3xl border border-primary/40">
-          FAQs
+    <section
+      id="faqs"
+      className="mt-20 py-6 w-full max-w-7xl mx-auto px-4 md:px-8 flex flex-col lg:flex-row gap-10 lg:gap-16 items-start mb-14"
+    >
+      {/* Header */}
+      <motion.div
+        initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full lg:w-2/5 py-4 flex flex-col items-start lg:sticky lg:top-28 gap-4"
+      >
+        <span className="w-fit text-xs text-primary px-3.5 py-1.5 bg-card rounded-full border border-primary/40 font-mono tracking-wider shadow-sm">
+          FAQS
         </span>
-        <h1 className="text-4xl md:text-5xl font-bold">
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
           Everything you need{" "}
-          <span className="block text-foreground-secondary text-center">
+          <span className="block text-foreground-secondary mt-1">
             to know.
           </span>
-        </h1>
-        <div className="px-8 text-sm md:text-lg text-center text-foreground-secondary font-medium">
+        </h2>
+        <div className="text-sm md:text-base text-foreground-secondary font-medium leading-relaxed max-w-md">
           <p>
-            Find quick answers to common questions about Nexora, its features,
-            and how it works.
+            Find quick answers to common questions about Nexora, its
+            features, and how it works.
           </p>
         </div>
-      </div>
-      {/* FAQs  */}
-      <div className="py-4 px-6 w-full lg:w-3/5 flex flex-col duration-300 transition-all ease-out">
-        {/* Q */}
+      </motion.div>
 
+      {/* FAQs List */}
+      <motion.div
+        variants={shouldReduceMotion ? undefined : containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+        className="w-full lg:w-3/5 flex flex-col gap-4"
+      >
         {faqs.map((q) => {
-          const isExpanded = isOpen === q.id;
+          const isExpanded = openId === q.id;
+          const panelId = `faq-panel-${q.id}`;
+          const buttonId = `faq-button-${q.id}`;
 
           return (
-            <div
+            <motion.div
+              layout
+              variants={shouldReduceMotion ? undefined : itemVariants}
+              transition={{
+                layout: {
+                  duration: 0.3,
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                },
+              }}
               key={q.id}
-              onClick={() => setIsOpen((prev) => (prev === q.id ? null : q.id))}
-              className="bg-background-secondary cursor-pointer w-full border border-border/70 py-4 px-6 flex flex-col justify-center transition-all duration-300 ease-in-out"
+              whileHover={{ y: -2 }}
+              className={`group w-full rounded-2xl border transition-colors duration-300 ${
+                isExpanded
+                  ? "bg-card border-primary/50 shadow-md"
+                  : "bg-background-secondary border-border/70 hover:border-primary/30"
+              }`}
             >
-              <div className="flex px-2 justify-between w-full h-full items-center">
-                <p className={`${isExpanded  ? "text-primary":"text-foreground"} text-sm md:text-lg  font-medium`}>
-                  {q.question}
-                </p>
-                <button className="bg-card-hover shadow cursor-pointer active:scale-95 transition-all duration-300 ease-in-out p-2">
-                  {isExpanded ? (
-                    <motion.div
-                      className="w-fit "
-                      animate={{ rotate: isOpen === q.id ? 180 : 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                      <FiMinus className="text-lg text-foreground" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      className="w-fit "
-                      animate={{ rotate: isOpen === q.id ? 180 : 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                        <LuPlus className="text-lg text-foreground" />
+              <h3 className="m-0">
+                <button
+                  id={buttonId}
+                  type="button"
+                  aria-expanded={isExpanded}
+                  aria-controls={panelId}
+                  onClick={() => toggle(q.id)}
+                  className="cursor-pointer w-full text-left py-5 px-6 flex justify-between items-center gap-4 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  <span
+                    className={`text-sm md:text-lg font-medium transition-colors duration-300 ${
+                      isExpanded ? "text-primary" : "text-foreground"
+                    }`}
+                  >
+                    {q.question}
+                  </span>
 
-                    </motion.div>
-                  )}
+                  <span
+                    className={`shrink-0 rounded-full p-2 border transition-colors duration-300 ${
+                      isExpanded
+                        ? "bg-primary/10 border-primary/40"
+                        : "bg-card-hover border-border/50 group-hover:border-primary/30"
+                    }`}
+                  >
+                    <motion.span
+                      animate={{ rotate: isExpanded ? 135 : 0 }}
+                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      className="block"
+                    >
+                      <LuPlus
+                        className={`text-base transition-colors duration-300 ${
+                          isExpanded ? "text-primary" : "text-foreground"
+                        }`}
+                      />
+                    </motion.span>
+                  </span>
                 </button>
-              </div>
+              </h3>
 
-              <div
-                className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
-                  isExpanded
-                    ? "grid-rows-[1fr] opacity-100 mt-2"
-                    : "grid-rows-[0fr] opacity-0"
-                }`}
-              >
-                <div className="overflow-hidden px-2 pr-16">
-                  <p className="text-foreground-muted text-sm md:text-lg">
-                    {q.answer}
-                  </p>
-                </div>
-              </div>
-            </div>
+              <AnimatePresence initial={false}>
+                {isExpanded && (
+                  <motion.div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={buttonId}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{
+                      height: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                      opacity: { duration: 0.2 },
+                    }}
+                    className="overflow-hidden"
+                  >
+                    <motion.div
+                      initial={{ y: -4 }}
+                      animate={{ y: 0 }}
+                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      className="pt-4 mt-0 mb-5 mx-6 border-t border-border/50 pr-8"
+                    >
+                      <p className="pt-4 text-foreground-secondary text-sm md:text-base leading-relaxed">
+                        {q.answer}
+                      </p>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </section>
   );
 };
