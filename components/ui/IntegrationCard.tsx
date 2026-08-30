@@ -18,9 +18,8 @@ const IntegrationCard = ({
   Icon,
 }: IntegrationCardProps) => {
   return (
-    <Card className="integration-card group relative bg-card/90 backdrop-blur-sm border border-border/60 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 ease-in-out p-2 md:p-3 rounded-2xl flex flex-col justify-between">
+    <div className="integration-card group relative bg-card/90 backdrop-blur-sm border border-border/60 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 ease-in-out p-2 md:p-3 rounded flex flex-col justify-between">
       <CardHeader className="w-full p-4 pb-4 border-b border-border/50 flex flex-row items-center gap-4">
-        {/* Brand Icon Wrapper */}
         <div
           style={{ backgroundColor: `${bgColor}15`, color: bgColor }}
           className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
@@ -42,7 +41,7 @@ const IntegrationCard = ({
           {description}
         </p>
       </CardContent>
-    </Card>
+    </div>
   );
 };
 

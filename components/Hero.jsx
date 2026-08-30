@@ -125,7 +125,7 @@ const Hero = () => {
           </Link>
 
           <Link
-            href="#integration"
+            href="/integration"
             className="hero-btn-wrapper w-full md:w-fit "
           >
             <button className="w-full sm:w-auto px-6 py-3 bg-transparent hover:bg-card border border-border hover:border-border-light rounded-full active:scale-95 cursor-pointer shadow transition-all duration-300 text-foreground font-semibold">

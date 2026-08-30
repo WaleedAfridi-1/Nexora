@@ -117,7 +117,7 @@ const Stats = () => {
         {StatsCardsContent.map((item, id) => (
           <div
             key={id}
-            className="stats-card group relative cursor-pointer rounded-3xl border border-border/60 hover:border-primary/50 transition-all duration-300 p-8 bg-card/90 backdrop-blur-sm flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+            className="stats-card group relative cursor-pointer rounded border border-border/60 hover:border-primary/50 transition-all duration-300 p-8 bg-card/90 backdrop-blur-sm flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
           >
             <div className="text-5xl lg:text-6xl text-primary font-black tracking-tighter flex items-center justify-center">
               <AnimateValue value={item.numbers} />
@@ -136,7 +136,7 @@ const Stats = () => {
       {/* Footer Cards Container */}
       <div className="stats-footer-container w-full flex flex-col lg:flex-row gap-6 mt-12 md:px-4">
         {/* Testimonial Card */}
-        <div className="stats-footer-card bg-card/95 backdrop-blur-sm w-full lg:w-1/2 flex flex-col justify-between border border-border/60 hover:border-primary/50 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-2xl hover:shadow-primary/5 rounded-3xl p-8 md:p-10">
+        <div className="stats-footer-card bg-card/95 backdrop-blur-sm w-full lg:w-1/2 flex flex-col justify-between border border-border/60 hover:border-primary/50 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-2xl hover:shadow-primary/5 rounded p-8 md:p-10">
           <div className="w-full border-b border-border/60 pb-8">
             <p className="w-full md:w-11/12 text-foreground-secondary text-base md:text-lg font-medium leading-relaxed">
               &ldquo;Nexora gave our team a much simpler way to bring our
@@ -159,7 +159,7 @@ const Stats = () => {
         </div>
 
         {/* CTA Banner Card */}
-        <div className="stats-footer-card bg-card/95 backdrop-blur-sm w-full lg:w-1/2 border border-border/60 hover:border-primary/50 transition-all duration-300 ease-in-out rounded-3xl cursor-pointer hover:shadow-2xl hover:shadow-primary/5 p-8 md:p-10 flex flex-col justify-between">
+        <div className="stats-footer-card bg-card/95 backdrop-blur-sm w-full lg:w-1/2 border border-border/60 hover:border-primary/50 transition-all duration-300 ease-in-out rounded cursor-pointer hover:shadow-2xl hover:shadow-primary/5 p-8 md:p-10 flex flex-col justify-between">
           <div className="border-b border-border/60 w-full pb-8 flex flex-col gap-3">
             <h3 className="text-2xl md:text-3xl text-foreground font-black tracking-tight">
               Start building with Nexora.

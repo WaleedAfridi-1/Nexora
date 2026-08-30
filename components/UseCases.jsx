@@ -77,7 +77,7 @@ const UseCases = () => {
   return (
     <section ref={sectionRef} id="product" className="relative w-full min-h-screen py-24 md:py-32 px-4 md:px-8 overflow-hidden">
       {/* SaaS Ambient Glow */}
-      <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute top-1/3 right-10 w-112.5 h-112.5 bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       {/* Heading Section */}
       <div className="w-full flex flex-col items-center gap-5 text-center">

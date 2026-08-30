@@ -123,7 +123,7 @@ const FAQ = () => {
               }}
               key={q.id}
               whileHover={{ y: -2 }}
-              className={`group w-full rounded-2xl border transition-colors duration-300 ${
+              className={`group w-full rounded border transition-colors duration-300 ${
                 isExpanded
                   ? "bg-card border-primary/50 shadow-md"
                   : "bg-background-secondary border-border/70 hover:border-primary/30"

@@ -155,7 +155,7 @@ const Testimonials = () => {
         {testimonialsData.map((card) => (
           <blockquote
             key={card.id}
-            className="testimonial-card flex h-full w-full flex-col space-y-4 border border-border-light bg-card px-3 py-6 transition-all duration-300 ease-in-out hover:border-primary/40 hover:shadow-lg"
+            className="testimonial-card rounded flex h-full w-full flex-col space-y-4 border border-border-light bg-card px-3 py-6 transition-all duration-300 ease-in-out hover:border-primary/40 hover:shadow-lg"
           >
             <div role="img" aria-label="5 out of 5 stars" className="flex gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (

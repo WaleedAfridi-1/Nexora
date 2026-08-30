@@ -91,7 +91,7 @@ const Pricing = () => {
       {/* Cards Container */}
       <div className="pricing-cards-container w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8 mt-8 md:px-2">
         {/* Free Plan */}
-        <Card className="pricing-card group relative flex flex-col justify-between rounded-3xl border border-border/60 hover:border-primary/50 transition-all duration-300 p-8 bg-card/90 backdrop-blur-sm shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
+        <Card className="pricing-card group relative flex flex-col justify-between rounded border border-border/60 hover:border-primary/50 transition-all duration-300 p-8 bg-card/90 backdrop-blur-sm shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
           <CardHeader className="w-full flex flex-col gap-3 items-start border-b border-border/60 pb-8 p-0">
             <span className="text-xs font-mono tracking-wider text-foreground font-bold">
               FREE
@@ -151,7 +151,7 @@ const Pricing = () => {
         </Card>
 
         {/* Pro Plan  */}
-        <Card className="pricing-card group relative flex flex-col justify-between rounded-3xl border-2 border-primary/50 hover:border-primary transition-all duration-300 p-8 bg-card/95 backdrop-blur-sm shadow-xl shadow-primary/5 hover:-translate-y-1">
+        <Card className="pricing-card group relative flex flex-col justify-between rounded border-2 border-primary/50 hover:border-primary transition-all duration-300 p-8 bg-card/95 backdrop-blur-sm shadow-xl shadow-primary/5 hover:-translate-y-1">
           <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full text-xs font-mono font-bold tracking-widest bg-primary px-4 py-1 text-foreground shadow-md">
             MOST POPULAR
           </span>
@@ -215,7 +215,7 @@ const Pricing = () => {
         </Card>
 
         {/* Business Plan */}
-        <Card className="pricing-card group relative flex flex-col justify-between rounded-3xl border border-border/60 hover:border-primary/50 transition-all duration-300 p-8 bg-card/90 backdrop-blur-sm shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
+        <Card className="pricing-card group relative flex flex-col justify-between rounded border border-border/60 hover:border-primary/50 transition-all duration-300 p-8 bg-card/90 backdrop-blur-sm shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
           <CardHeader className="w-full flex flex-col gap-3 items-start border-b border-border/60 pb-8 p-0">
             <span className="text-xs font-mono tracking-wider text-foreground font-bold">
               BUSINESS
@@ -276,9 +276,9 @@ const Pricing = () => {
       </div>
 
       {/* Footer Custom Plan Banner */}
-      <div className="pricing-footer-banner w-full mt-12 md:px-2">
+      <div className="pricing-footer-banner w-full mt-4 md:px-2">
         <Link href={"/contact"}>
-          <div className="group w-full rounded-3xl border border-border/60 hover:border-primary/50 bg-card/95 backdrop-blur-sm p-6 md:p-8 flex items-center justify-between transition-all duration-300 ease-in-out shadow-sm hover:shadow-xl hover:shadow-primary/5">
+          <div className="group w-full rounded border border-border/60 hover:border-primary/50 bg-card/95 backdrop-blur-sm p-6 md:p-8 flex items-center justify-between transition-all duration-300 ease-in-out shadow-sm hover:shadow-xl hover:shadow-primary/5">
             <div className="flex flex-col gap-1">
               <h3 className="text-base md:text-xl text-foreground font-bold tracking-tight">
                 Need a custom plan?

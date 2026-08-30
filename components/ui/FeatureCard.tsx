@@ -103,7 +103,7 @@ const FeatureCard = ({
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-10 bg-background opacity-0"
         />
-        <Card className="flex min-h-104 flex-col justify-between border border-border-light bg-card px-5 py-10 shadow-lg md:min-h-80 md:flex-row md:gap-3 md:px-8 md:py-12 lg:min-h-105 lg:gap-8">
+        <Card className="flex min-h-104 flex-col justify-between border border-border-light bg-card px-5 py-10 shadow-lg md:min-h-80 md:flex-row md:gap-3 md:px-8 md:py-12 lg:min-h-105 lg:gap-8 rounded ">
           <CardContent className="flex h-full w-full flex-col justify-center gap-4 px-4 py-6 md:w-1/2 md:px-7 lg:px-6">
             <span className="font-mono text-xs text-primary">{tag}</span>
             <h3 className="text-3xl font-bold text-foreground md:text-4xl lg:text-5xl">

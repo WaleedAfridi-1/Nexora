@@ -8,6 +8,7 @@ import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
+import Resources from "@/components/Resources";
 
 export default function Home() {
   return (
@@ -19,11 +20,8 @@ export default function Home() {
 
       <ProblemsSolutions/>
 
-
-      
       <Features/>
 
-    
 
       <UseCases/>
 
@@ -34,6 +32,8 @@ export default function Home() {
 
       <Pricing/>
       
+      <Resources/>
+
       <FAQ/>
       
       <CTA/>

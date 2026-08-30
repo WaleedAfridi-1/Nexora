@@ -89,7 +89,7 @@ const CTA = () => {
           </Link>
 
           <Link
-            href="#integration"
+            href="/integration"
             className="group w-full sm:w-auto bg-card hover:bg-card-hover text-foreground-secondary hover:text-foreground font-bold px-8 py-3.5 rounded-full border border-border hover:border-primary/40 shadow-sm transition-all duration-300 ease-in-out cursor-pointer active:scale-95 flex items-center justify-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             Explore Nexora
