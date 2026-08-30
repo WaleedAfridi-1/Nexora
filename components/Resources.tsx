@@ -1,88 +1,12 @@
 import {
   ArrowRight,
-  ArrowUpRight,
-  Bot,
-  Clock,
-  ListChecks,
-  Sparkles,
-  Workflow,
 } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 import { Card } from "./ui/card";
+import { resources } from "@/components/ui/resources/ResourcesCardData";
+import Header from "@/components/ui/resources/Header";
 
-type ResourceItem = {
-  id: number;
-  slug: string;
-  category: string;
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  readTime: string;
-};
 
-const resources: ResourceItem[] = [
-  {
-    id: 1,
-    slug: "automate-repetitive-work",
-    category: "Automation",
-    icon: Workflow,
-    title: "Automate repetitive work without adding complexity",
-    description:
-      "Learn how to identify repetitive tasks and turn them into simple, reliable workflows.",
-    readTime: "6 min read",
-  },
-  {
-    id: 2,
-    slug: "ai-agents-everyday-workflows",
-    category: "AI workflows",
-    icon: Bot,
-    title: "How AI agents can improve everyday workflows",
-    description:
-      "Explore practical ways to use AI agents to handle decisions, tasks, and routine processes.",
-    readTime: "5 min read",
-  },
-  {
-    id: 3,
-    slug: "principles-for-better-automations",
-    category: "Best practices",
-    icon: ListChecks,
-    title: "7 principles for building better automations",
-    description:
-      "A practical guide to creating workflows that stay simple, reliable, and easy to maintain.",
-    readTime: "7 min read",
-  },
-  {
-    id: 4,
-    slug: "where-automation-saves-time",
-    category: "Productivity",
-    icon: Clock,
-    title: "Where automation can save your team the most time",
-    description:
-      "Find the everyday processes that are worth automating first and where to start.",
-    readTime: "4 min read",
-  },
-  {
-    id: 5,
-    slug: "ai-for-smarter-workflows",
-    category: "AI",
-    icon: Sparkles,
-    title: "Using AI to make workflows more intelligent",
-    description:
-      "See how AI can understand context and make your automated workflows more flexible.",
-    readTime: "8 min read",
-  },
-  {
-    id: 6,
-    slug: "manual-tasks-to-automated-workflows",
-    category: "Guides",
-    icon: ArrowUpRight,
-    title: "From manual tasks to automated workflows",
-    description:
-      "A step-by-step approach to turning a manual process into a repeatable automation.",
-    readTime: "6 min read",
-  },
-];
 
 const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
@@ -95,21 +19,7 @@ const Resources = () => {
       className="w-full flex flex-col gap-10 py-20 md:py-28 px-4"
     >
       {/* Header */}
-      <div className="w-full flex flex-col items-center gap-5">
-        <span className="text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">
-          Resources
-        </span>
-        <h2
-          id="resources-heading"
-          className="text-foreground text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center"
-        >
-          Learn. Build. <span className="text-foreground-secondary block"> Automate.</span>
-        </h2>
-        <p className="text-foreground-secondary text-sm md:text-lg text-center font-medium leading-relaxed max-w-xl">
-          Practical guides and insights to help you get more from your
-          workflows.
-        </p>
-      </div>
+      <Header/>
 
       <div className="w-full max-w-6xl mx-auto flex flex-col items-center gap-16">
         {/* Latest resources */}
@@ -128,7 +38,7 @@ const Resources = () => {
           </div>
 
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
-            {resources.map((item) => {
+            {resources.slice(0,3).map((item) => {
               const Icon = item.icon;
               return (
                 <Card key={item.id} className="p-0 border-none bg-transparent">

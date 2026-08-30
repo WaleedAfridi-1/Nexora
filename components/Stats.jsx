@@ -134,7 +134,7 @@ const Stats = () => {
       </div>
 
       {/* Footer Cards Container */}
-      <div className="stats-footer-container w-full flex flex-col lg:flex-row gap-6 mt-12 md:px-4">
+      <div className="stats-footer-container w-full flex flex-col lg:flex-row gap-6  md:px-4">
         {/* Testimonial Card */}
         <div className="stats-footer-card bg-card/95 backdrop-blur-sm w-full lg:w-1/2 flex flex-col justify-between border border-border/60 hover:border-primary/50 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-2xl hover:shadow-primary/5 rounded p-8 md:p-10">
           <div className="w-full border-b border-border/60 pb-8">
@@ -175,7 +175,7 @@ const Stats = () => {
               No commitment. Start exploring today.
             </span>
             <Link href={"#pricing"}>
-              <button className="bg-primary hover:bg-primary-hover px-5 py-2.5 md:px-7 md:py-3 rounded-full font-bold cursor-pointer shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95 transition-all duration-300 ease-in-out text-foreground flex items-center gap-2">
+              <button className="w-fit whitespace-nowrap bg-primary hover:bg-primary-hover px-3 py-2.5 md:px-7 md:py-3 rounded-full font-bold cursor-pointer shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95 transition-all duration-300 ease-in-out text-foreground flex items-center gap-2">
                 Get started
                 <ArrowUpRight className="w-4 h-4" />
               </button>

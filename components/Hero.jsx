@@ -118,14 +118,14 @@ const Hero = () => {
 
         {/* Buttons Wrapper */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 w-full">
-          <Link href="/contact" className="hero-btn-wrapper w-full sm:w-auto">
+          <Link href="/pricing" className="hero-btn-wrapper w-full sm:w-auto">
             <button className="w-full sm:w-auto px-6 py-3 bg-primary border border-border hover:border-border-light rounded-full active:scale-95 cursor-pointer hover:bg-primary-hover shadow transition-all duration-300 text-foreground font-semibold">
               Get Started
             </button>
           </Link>
 
           <Link
-            href="/integration"
+            href="#feature"
             className="hero-btn-wrapper w-full md:w-fit "
           >
             <button className="w-full sm:w-auto px-6 py-3 bg-transparent hover:bg-card border border-border hover:border-border-light rounded-full active:scale-95 cursor-pointer shadow transition-all duration-300 text-foreground font-semibold">

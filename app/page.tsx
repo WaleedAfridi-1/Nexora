@@ -5,7 +5,6 @@ import  Features  from "../components/Features";
 import UseCases from "@/components/UseCases";
 import Stats from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Resources from "@/components/Resources";
@@ -29,8 +28,6 @@ export default function Home() {
       <Stats/>
       
       <Testimonials/>
-
-      <Pricing/>
       
       <Resources/>
 

@@ -5,15 +5,25 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+
+const defaultTag = "READY WHEN YOU ARE";
+const defaultTitleLine1 = "Build what's next"
+const defaultTitleLine2 = "with Nexora.";
+const defaultDescription = "Bring your workflows together, automate the busywork, and keep your team moving forward."
 gsap.registerPlugin(ScrollTrigger);
 
-const CTA = () => {
+
+const CTA = ({
+  tag=defaultTag,
+  titleLineOne=defaultTitleLine1,
+  titleLineTwo=defaultTitleLine2,
+  description=defaultDescription
+}) => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Respect prefers-reduced-motion — users who've asked for less
-      // motion get the content with no scroll animation, not a stripped page.
+
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -31,8 +41,7 @@ const CTA = () => {
           clearProps: "transform,opacity",
         });
 
-        // Slow ambient drift on the glow — gives the section a living,
-        // not-static backdrop without competing with the content entrance.
+  
         gsap.to(".cta-glow", {
           scale: 1.15,
           duration: 6,
@@ -51,37 +60,36 @@ const CTA = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full max-w-7xl mx-auto my-24 md:my-32 px-4 md:px-8 overflow-hidden rounded-[2.5rem] border border-primary/20 bg-gradient-to-b from-primary/10 via-card/50 to-card/90 backdrop-blur-md py-20 md:py-28 shadow-2xl shadow-primary/5"
+      className="relative w-full max-w-7xl mx-auto my-24 md:my-32 px-4 md:px-8 overflow-hidden rounded-[2.5rem] border border-primary/20 bg-linear-to-b from-primary/10 via-card/50 to-card/90 backdrop-blur-md py-20 md:py-28 shadow-2xl shadow-primary/5"
     >
-      {/* SaaS Ambient Glow Backdrop */}
+    
       <div
         aria-hidden="true"
-        className="cta-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px] pointer-events-none -z-10"
+        className="cta-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-primary/10 rounded-full blur-[140px] pointer-events-none -z-10"
       />
 
       {/* Header Container */}
       <div className="w-full flex flex-col items-center gap-6 text-center">
-        <span className="cta-elem text-xs font-mono tracking-widest text-primary px-4 py-1.5 bg-card rounded-full border border-primary/30 shadow-sm">
-          READY WHEN YOU ARE
+        <span className="cta-elem text-xs  tracking-widest text-primary px-4 py-1.5 bg-card rounded-full border border-primary/30 shadow-sm">
+          {tag}
         </span>
 
         <h2 className="cta-elem text-4xl md:text-5xl lg:text-6xl text-foreground font-black tracking-tight leading-tight max-w-3xl">
-          Build what&apos;s next{" "}
-          <span className="block lg:inline text-foreground-secondary">
-            with Nexora.
+          {titleLineOne}
+          <span className="block text-foreground-secondary">
+            {titleLineTwo}
           </span>
         </h2>
 
         <div className="cta-elem w-full md:w-3/5 lg:w-1/2 text-center">
           <p className="text-sm md:text-lg text-foreground-secondary font-medium leading-relaxed">
-            Bring your workflows together, automate the busywork, and keep
-            your team moving forward.
+            {description}
           </p>
         </div>
 
         <div className="cta-elem w-full flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
           <Link
-            href="#pricing"
+            href="/pricing"
             className="group w-full sm:w-auto bg-primary hover:bg-primary-hover text-foreground font-bold px-8 py-3.5 rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 ease-in-out cursor-pointer active:scale-95 flex items-center justify-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             Get started

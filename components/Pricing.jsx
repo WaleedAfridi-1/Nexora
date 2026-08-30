@@ -15,7 +15,7 @@ const Pricing = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. Header entrance animation
+
       gsap.from(".pricing-header-elem", {
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -30,7 +30,6 @@ const Pricing = () => {
         clearProps: "transform,opacity",
       });
 
-      // 2. Cards stagger animation
       gsap.from(".pricing-card", {
         scrollTrigger: {
           trigger: ".pricing-cards-container",
@@ -45,7 +44,7 @@ const Pricing = () => {
         clearProps: "transform,opacity",
       });
 
-      // 3. Custom plan banner animation
+    
       gsap.from(".pricing-footer-banner", {
         scrollTrigger: {
           trigger: ".pricing-footer-banner",
@@ -66,11 +65,9 @@ const Pricing = () => {
   return (
     <section
       ref={sectionRef}
-      id="pricing"
       className="relative w-full py-24 md:py-32 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden"
     >
-      {/* SaaS Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-primary/5 rounded-full blur-[130px] pointer-events-none -z-10" />
+      <div className="absolute top-52 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-primary-glow/60 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* Header */}
       <div className="w-full flex flex-col items-center gap-5 text-center">
@@ -79,9 +76,7 @@ const Pricing = () => {
         </span>
         <h2 className="pricing-header-elem text-4xl md:text-5xl lg:text-6xl text-foreground font-black tracking-tight">
           Plans that grow{" "}
-          <span className="block  text-foreground-secondary">
-            with you
-          </span>
+          <span className="block  text-foreground-secondary">with you</span>
         </h2>
         <p className="pricing-header-elem text-center px-4 md:w-2/3 lg:w-1/2 text-foreground-secondary text-base md:text-lg font-medium leading-relaxed">
           Start with what you need today and unlock more as your team scales.
@@ -89,9 +84,9 @@ const Pricing = () => {
       </div>
 
       {/* Cards Container */}
-      <div className="pricing-cards-container w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8 mt-8 md:px-2">
+      <div className="pricing-cards-container w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10  gap-6 py-8 mt-40 px-2">
         {/* Free Plan */}
-        <Card className="pricing-card group relative flex flex-col justify-between rounded border border-border/60 hover:border-primary/50 transition-all duration-300 p-8 bg-card/90 backdrop-blur-sm shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
+        <Card className="self-center pricing-card group relative flex flex-col justify-between rounded border border-border/60 hover:border-primary/50 transition-all duration-300 p-8 bg-card/90 backdrop-blur-sm shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
           <CardHeader className="w-full flex flex-col gap-3 items-start border-b border-border/60 pb-8 p-0">
             <span className="text-xs font-mono tracking-wider text-foreground font-bold">
               FREE
@@ -152,7 +147,7 @@ const Pricing = () => {
 
         {/* Pro Plan  */}
         <Card className="pricing-card group relative flex flex-col justify-between rounded border-2 border-primary/50 hover:border-primary transition-all duration-300 p-8 bg-card/95 backdrop-blur-sm shadow-xl shadow-primary/5 hover:-translate-y-1">
-          <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full text-xs font-mono font-bold tracking-widest bg-primary px-4 py-1 text-foreground shadow-md">
+          <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full text-xs tracking-wider font-bold bg-primary px-4 py-1 text-foreground shadow-md">
             MOST POPULAR
           </span>
 
@@ -275,8 +270,8 @@ const Pricing = () => {
         </Card>
       </div>
 
-      {/* Footer Custom Plan Banner */}
-      <div className="pricing-footer-banner w-full mt-4 md:px-2">
+      {/* Footer Custom Plan  */}
+      <div className="pricing-footer-banner w-full  md:px-2">
         <Link href={"/contact"}>
           <div className="group w-full rounded border border-border/60 hover:border-primary/50 bg-card/95 backdrop-blur-sm p-6 md:p-8 flex items-center justify-between transition-all duration-300 ease-in-out shadow-sm hover:shadow-xl hover:shadow-primary/5">
             <div className="flex flex-col gap-1">
@@ -284,7 +279,8 @@ const Pricing = () => {
                 Need a custom plan?
               </h3>
               <p className="text-xs md:text-sm font-medium text-foreground-secondary">
-                Talk to our team for custom integrations, security, and enterprise support.
+                Talk to our team for custom integrations, security, and
+                enterprise support.
               </p>
             </div>
             <div className="p-3.5 rounded-2xl bg-primary/10 group-hover:bg-primary group-hover:text-foreground text-primary transition-all duration-300 ease-in-out shrink-0 ml-4">
