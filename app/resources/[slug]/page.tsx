@@ -12,61 +12,64 @@ import ResourceCard, {
 import TableOfContents from "@/components/ui/resources/Tableofcontents";
 import ReadingProgressBar from "@/components/ui/resources/Readingprogressbar";
 import ShareButtons from "@/components/ui/resources/Sharebuttons";
+import { resources } from "../resources";
+import { resourceContent } from "../resourceContent";
+import { notFound } from "next/navigation";
 
-// ---------------------------------------------------------------------------
-// Config
-// ---------------------------------------------------------------------------
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nexora.com";
-const PAGE_PATH = "/resources/building-reliable-ai-workflows";
-const PUBLISHED_DATE = "2026-09-01";
-const PAGE_TITLE = "How to Build Reliable AI Workflows";
-const PAGE_DESCRIPTION =
-  "A practical guide to designing AI-powered workflows that are predictable, scalable, and easy to troubleshoot — from clear inputs to output validation and fallback paths.";
-const READ_TIME = "7 min read";
 
-export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | Nexora`,
-  description: PAGE_DESCRIPTION,
-  alternates: { canonical: `${SITE_URL}${PAGE_PATH}` },
-  openGraph: {
-    title: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
-    url: `${SITE_URL}${PAGE_PATH}`,
-    type: "article",
-    publishedTime: PUBLISHED_DATE,
-    authors: ["Nexora Team"],
-    images: [
-      {
-        url: `${SITE_URL}/og/building-reliable-ai-workflows.png`,
-        width: 1200,
-        height: 630,
-        alt: PAGE_TITLE,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
-    images: [`${SITE_URL}/og/building-reliable-ai-workflows.png`],
-  },
-};
 
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: PAGE_TITLE,
-  description: PAGE_DESCRIPTION,
-  datePublished: PUBLISHED_DATE,
-  dateModified: PUBLISHED_DATE,
-  author: { "@type": "Organization", name: "Nexora Team" },
-  publisher: {
-    "@type": "Organization",
-    name: "Nexora",
-    logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
-  },
-  mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}${PAGE_PATH}` },
-};
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nexora-lyart-eight.vercel.app";
+
+
+export function generateStaticParams() {
+  return resources.map((resource) => ({
+    slug: resource.slug,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: pageProps): Promise<Metadata> {
+
+  const { slug } = await params;
+
+  const resource = resources.find(
+    (item) => item.slug === slug
+  );
+
+  if (!resource) {
+    return {};
+  }
+
+  const pagePath = `/resources/${resource.slug}`;
+
+  return {
+    title: `${resource.title} | Nexora`,
+    description: resource.description,
+
+    alternates: {
+      canonical: `${SITE_URL}${pagePath}`,
+    },
+
+    openGraph: {
+      title: resource.title,
+      description: resource.description,
+      url: `${SITE_URL}${pagePath}`,
+      type: "article",
+      publishedTime: resource.publishedDate,
+      authors: ["Nexora Team"],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: resource.title,
+      description: resource.description,
+    },
+  };
+}
+
+
 
 const VisualFallback = ({ label }: { label: string }) => (
   <div
@@ -76,14 +79,63 @@ const VisualFallback = ({ label }: { label: string }) => (
   />
 );
 
-const Page = () => {
+interface pageProps {
+  params: Promise<{
+    slug : string
+  }>;
+}
+
+
+
+const Page = async ({params} : pageProps) => {
+
+  const { slug } = await params;
+
+  const resource = resources.find(
+    (item) => item.slug === slug
+  )
+  if(!resource) return notFound();
+
+  const content = resourceContent[resource.slug];
+  if (!content) return notFound();
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+
+    headline: resource.title,
+    description: resource.description,
+
+    datePublished: resource.publishedDate,
+    dateModified: resource.publishedDate,
+
+    author: {
+      "@type": "Organization",
+      name: "Nexora Team",
+    },
+
+    publisher: {
+      "@type": "Organization",
+      name: "Nexora",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
+
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id":  `${SITE_URL}/resources/${resource.slug}`,
+    },
+  };
+
+
   return (
     <main className="min-h-screen mt-20">
       <ReadingProgressBar />
 
       <script
         type="application/ld+json"
-      
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
 
@@ -92,7 +144,10 @@ const Page = () => {
         <nav aria-label="Breadcrumb" className="mb-10">
           <ol className="flex items-center gap-1.5 text-sm text-foreground-muted">
             <li>
-              <Link href="/" className="hover:text-foreground transition-colors">
+              <Link
+                href="/"
+                className="hover:text-foreground transition-colors"
+              >
                 Home
               </Link>
             </li>
@@ -107,7 +162,7 @@ const Page = () => {
             </li>
             <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
             <li aria-current="page" className="text-foreground truncate">
-              Building reliable AI workflows
+              {resource.slug.split("-").join(" ")}
             </li>
           </ol>
         </nav>
@@ -115,16 +170,15 @@ const Page = () => {
         {/* Header */}
         <header className="flex flex-col gap-4 pb-10 border-b border-border">
           <span className="w-fit px-3 py-1 text-xs font-medium text-primary bg-card border border-primary/40 rounded-full uppercase tracking-wide">
-            AI Workflows
+            {resource.category}
           </span>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl text-foreground font-bold leading-tight tracking-tight max-w-3xl">
-            How to build reliable AI workflows
+            {resource.title}
           </h1>
 
           <p className="text-foreground-secondary text-base md:text-lg max-w-2xl">
-            A practical guide to designing AI-powered workflows that are
-            predictable and scalable.
+            {resource.description}
           </p>
 
           <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
@@ -138,24 +192,24 @@ const Page = () => {
               <div className="text-sm">
                 <p className="font-medium text-foreground">Nexora Team</p>
                 <p className="text-foreground-muted">
-                  <time dateTime={PUBLISHED_DATE}>Sep 1, 2026</time>
+                  <time dateTime={resource.publishedDate}>{resource.publishedDate}</time>
                   {" · "}
-                  {READ_TIME}
+                  {resource.readTime}
                 </p>
               </div>
             </div>
 
-            <ShareButtons title={PAGE_TITLE} url={`${SITE_URL}${PAGE_PATH}`} />
+            <ShareButtons title={resource.title} url={ `${SITE_URL}/resources/${resource.slug}`} />
           </div>
         </header>
       </div>
 
-      {/* Body: sticky TOC + article */}
+      {/*  sticky TOC + article */}
       <div className="mx-auto max-w-5xl px-4 md:px-6 py-12 flex gap-12">
         <TableOfContents />
 
         <article className="min-w-0 flex-1 flex flex-col gap-16">
-          {/* Introduction */}
+          
           <section
             id="introduction-heading"
             aria-labelledby="introduction-heading-label"
@@ -171,31 +225,29 @@ const Page = () => {
               <p className="text-base text-foreground-secondary leading-relaxed">
                 AI workflows are becoming an important part of modern
                 businesses. They allow teams to automate repetitive tasks,
-                process large amounts of information, and make faster
-                decisions without relying on manual processes for every step.
-                From handling customer requests and qualifying leads to
-                sending emails and organizing data, AI can help businesses
-                reduce unnecessary work and focus their time on more
-                important tasks.
+                process large amounts of information, and make faster decisions
+                without relying on manual processes for every step. From
+                handling customer requests and qualifying leads to sending
+                emails and organizing data, AI can help businesses reduce
+                unnecessary work and focus their time on more important tasks.
               </p>
               <p className="text-base text-foreground-secondary leading-relaxed">
-                However, simply adding AI to a workflow is only the
-                beginning. As workflows become more complex, they need to
-                remain predictable, consistent, and easy to manage. An AI
-                system may produce different results depending on the input,
-                which can create problems when its output is connected to
-                other automated steps. Building a reliable workflow
-                therefore requires careful planning, clear instructions,
-                proper validation, and a way to monitor what happens at each
-                stage.
+                However, simply adding AI to a workflow is only the beginning.
+                As workflows become more complex, they need to remain
+                predictable, consistent, and easy to manage. An AI system may
+                produce different results depending on the input, which can
+                create problems when its output is connected to other automated
+                steps. Building a reliable workflow therefore requires careful
+                planning, clear instructions, proper validation, and a way to
+                monitor what happens at each stage.
               </p>
               <p className="text-base text-foreground-secondary leading-relaxed">
                 The goal is not to remove humans from every process, but to
-                create systems where AI handles the tasks it is best suited
-                for while the overall workflow remains controlled and
-                understandable. When designed correctly, AI workflows can
-                scale with a business without becoming difficult to
-                maintain or troubleshoot.
+                create systems where AI handles the tasks it is best suited for
+                while the overall workflow remains controlled and
+                understandable. When designed correctly, AI workflows can scale
+                with a business without becoming difficult to maintain or
+                troubleshoot.
               </p>
             </div>
           </section>
@@ -228,19 +280,20 @@ const Page = () => {
               <p className="text-base text-foreground-secondary leading-relaxed">
                 When these workflows are used in real business processes,
                 reliability becomes even more important. As the number of
-                automated workflows grows, manually checking every step
-                becomes difficult and defeats the purpose of automation.
-                Reliable workflows should therefore be designed to handle
-                unexpected inputs, validate important results, and make it
-                easy for teams to understand what happened when something
-                goes wrong.
+                automated workflows grows, manually checking every step becomes
+                difficult and defeats the purpose of automation. Reliable
+                workflows should therefore be designed to handle unexpected
+                inputs, validate important results, and make it easy for teams
+                to understand what happened when something goes wrong.
               </p>
             </div>
           </section>
 
           {/* Visual */}
-          <div className="relative h-[420px] md:h-135 rounded-xl border border-border bg-card overflow-hidden">
-            <Suspense fallback={<VisualFallback label="Loading workflow diagram" />}>
+          <div className="relative h-140 md:h-145 rounded-xl border border-border bg-card overflow-hidden">
+            <Suspense
+              fallback={<VisualFallback label="Loading workflow diagram" />}
+            >
               <WorkflowVisual />
             </Suspense>
           </div>
@@ -261,26 +314,25 @@ const Page = () => {
             <div className="flex flex-col divide-y divide-border">
               <NumberedItem number="01" title="Define clear inputs">
                 <p className="text-sm text-foreground-muted leading-relaxed">
-                  A reliable workflow starts with a clear understanding of
-                  what information each step should receive. AI models can
-                  produce inconsistent results when the input is
-                  incomplete, ambiguous, or contains unnecessary
-                  information.
+                  A reliable workflow starts with a clear understanding of what
+                  information each step should receive. AI models can produce
+                  inconsistent results when the input is incomplete, ambiguous,
+                  or contains unnecessary information.
                 </p>
                 <p className="text-sm text-foreground-muted leading-relaxed">
-                  Before sending data to an AI step, define what the model
-                  needs and remove anything that could introduce confusion.
-                  Clear inputs make the workflow easier to understand, test,
-                  and maintain as it grows.
+                  Before sending data to an AI step, define what the model needs
+                  and remove anything that could introduce confusion. Clear
+                  inputs make the workflow easier to understand, test, and
+                  maintain as it grows.
                 </p>
               </NumberedItem>
 
               <NumberedItem number="02" title="Keep AI decisions focused">
                 <p className="text-sm text-foreground-muted leading-relaxed">
                   AI works best when it is given a specific responsibility
-                  within a workflow. Instead of asking one AI step to handle
-                  an entire business process, break the process into
-                  smaller tasks with clear responsibilities.
+                  within a workflow. Instead of asking one AI step to handle an
+                  entire business process, break the process into smaller tasks
+                  with clear responsibilities.
                 </p>
                 <p className="text-sm text-foreground-muted leading-relaxed">
                   For example, an AI agent can classify a customer request,
@@ -292,16 +344,15 @@ const Page = () => {
 
               <NumberedItem number="03" title="Validate important outputs">
                 <p className="text-sm text-foreground-muted leading-relaxed">
-                  AI-generated results should not always be passed directly
-                  to the next step. Important outputs should be checked
-                  before they trigger an action, especially when the
-                  workflow is handling customer data, sending messages, or
-                  making business decisions.
+                  AI-generated results should not always be passed directly to
+                  the next step. Important outputs should be checked before they
+                  trigger an action, especially when the workflow is handling
+                  customer data, sending messages, or making business decisions.
                 </p>
                 <p className="text-sm text-foreground-muted leading-relaxed">
-                  Adding validation creates a safety layer between AI and
-                  the actions that follow. It helps prevent unexpected
-                  outputs from turning into larger workflow failures.
+                  Adding validation creates a safety layer between AI and the
+                  actions that follow. It helps prevent unexpected outputs from
+                  turning into larger workflow failures.
                 </p>
               </NumberedItem>
             </div>
@@ -322,25 +373,24 @@ const Page = () => {
             <div className="flex flex-col gap-5 max-w-2xl">
               <p className="text-base text-foreground-secondary leading-relaxed">
                 Designing a reliable AI workflow starts with breaking the
-                process into clear, manageable steps. Each step should have
-                a specific responsibility, predictable inputs, and a
-                defined outcome. Instead of relying on a single AI action to
-                handle an entire process, businesses can combine AI with
-                validation, business rules, and automated actions to create
-                workflows that are easier to understand and maintain.
+                process into clear, manageable steps. Each step should have a
+                specific responsibility, predictable inputs, and a defined
+                outcome. Instead of relying on a single AI action to handle an
+                entire process, businesses can combine AI with validation,
+                business rules, and automated actions to create workflows that
+                are easier to understand and maintain.
               </p>
               <p className="text-base text-foreground-secondary leading-relaxed">
-                A well-designed workflow should also account for what
-                happens when something goes wrong. AI outputs can sometimes
-                be incomplete, unexpected, or difficult to interpret, so
-                important decisions should have validation and fallback
-                paths in place. By separating AI decisions from critical
-                actions and monitoring each stage, teams can build
-                workflows that remain reliable even as the process becomes
-                more complex.
+                A well-designed workflow should also account for what happens
+                when something goes wrong. AI outputs can sometimes be
+                incomplete, unexpected, or difficult to interpret, so important
+                decisions should have validation and fallback paths in place. By
+                separating AI decisions from critical actions and monitoring
+                each stage, teams can build workflows that remain reliable even
+                as the process becomes more complex.
               </p>
             </div>
-            <div className="relative h-112.5 md:h-[600px] rounded-xl border border-border bg-card overflow-hidden">
+            <div className="relative h-112.5 md:h-160 rounded-xl border border-border bg-card overflow-hidden">
               <Suspense
                 fallback={
                   <VisualFallback label="Loading reliability workflow diagram" />
@@ -351,7 +401,7 @@ const Page = () => {
             </div>
           </section>
 
-          {/* Common problems to avoid */}
+          {/* Common problems */}
           <section
             id="problems-heading"
             aria-labelledby="problems-heading-label"
@@ -366,17 +416,17 @@ const Page = () => {
             <div className="flex flex-col divide-y divide-border">
               <NumberedItem number="01" title="Unclear AI instructions">
                 <p className="text-sm text-foreground-muted leading-relaxed">
-                  Unclear instructions can lead to inconsistent or
-                  unexpected AI outputs. When an AI step does not have a
-                  clear objective or enough context, its results can vary
-                  and affect the steps that follow.
+                  Unclear instructions can lead to inconsistent or unexpected AI
+                  outputs. When an AI step does not have a clear objective or
+                  enough context, its results can vary and affect the steps that
+                  follow.
                 </p>
               </NumberedItem>
               <NumberedItem number="02" title="No output validation">
                 <p className="text-sm text-foreground-muted leading-relaxed">
-                  Passing AI-generated output directly to the next action
-                  can introduce unnecessary risk. Important results should
-                  be validated before they trigger another step or affect a
+                  Passing AI-generated output directly to the next action can
+                  introduce unnecessary risk. Important results should be
+                  validated before they trigger another step or affect a
                   business process.
                 </p>
               </NumberedItem>
@@ -406,15 +456,14 @@ const Page = () => {
             <div className="flex flex-col divide-y divide-border">
               <NumberedItem number="01" title="Keep workflows simple">
                 <p className="text-sm text-foreground-muted leading-relaxed">
-                  Break complex processes into smaller, manageable steps.
-                  Simple workflows are easier to understand, monitor, and
-                  maintain.
+                  Break complex processes into smaller, manageable steps. Simple
+                  workflows are easier to understand, monitor, and maintain.
                 </p>
               </NumberedItem>
               <NumberedItem number="02" title="Give AI clear instructions">
                 <p className="text-sm text-foreground-muted leading-relaxed">
-                  Define what the AI should do, what information it should
-                  use, and what kind of result it should produce.
+                  Define what the AI should do, what information it should use,
+                  and what kind of result it should produce.
                 </p>
               </NumberedItem>
               <NumberedItem number="03" title="Validate critical outputs">
@@ -427,15 +476,15 @@ const Page = () => {
               <NumberedItem number="04" title="Monitor workflow runs">
                 <p className="text-sm text-foreground-muted leading-relaxed">
                   Track workflow activity and results so you can quickly
-                  identify failures, unexpected behavior, or areas that
-                  need improvement.
+                  identify failures, unexpected behavior, or areas that need
+                  improvement.
                 </p>
               </NumberedItem>
               <NumberedItem number="05" title="Always have a fallback">
                 <p className="text-sm text-foreground-muted leading-relaxed">
-                  Create a backup path for situations where an AI step
-                  fails or produces an uncertain result. This keeps the
-                  workflow from stopping completely.
+                  Create a backup path for situations where an AI step fails or
+                  produces an uncertain result. This keeps the workflow from
+                  stopping completely.
                 </p>
               </NumberedItem>
             </div>
@@ -491,7 +540,7 @@ const Page = () => {
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
-            {relatedResources.map((resource : any) => (
+            {relatedResources.map((resource: any) => (
               <ResourceCard key={resource.href} resource={resource} />
             ))}
           </div>
@@ -510,11 +559,11 @@ const Page = () => {
               Ready to automate smarter?
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-foreground-secondary">
-              Build reliable workflows with Nexora and spend less time
-              managing repetitive work.
+              Build reliable workflows with Nexora and spend less time managing
+              repetitive work.
             </p>
             <Link
-              href="/contact"
+              href="/pricing"
               className="mt-7 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
             >
               Get Started

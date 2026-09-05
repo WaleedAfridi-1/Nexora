@@ -26,7 +26,7 @@ const ReadingProgressBar = () => {
 
   return (
     <div
-      className="fixed top-0 left-0 right-0 z-50 h-[2px] bg-transparent"
+      className="fixed top-0 left-0 right-0 z-50 h-0.5 bg-transparent"
       role="progressbar"
       aria-label="Reading progress"
       aria-valuenow={Math.round(progress)}
